@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<body>
+  <head>
+  <style>
+
+    body {
+      background: rgb(33, 37, 41);
+      color: white;
+      margin: 0;
+    }
+
+  #maincontent{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height:100vh;
+      color:white;
+    }
+
+  </style>
+  </head>
+
+    <div id ="maincontent">
+    </div>
+
+  <script>
+
+  const d = new Date();
+  todayYear = d.getFullYear();
+  todayMonth = d.getMonth();
+  todayDay = d.getDate();
+  
+
+  function daysInFebruary(year) {
+    if(year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) {
+        // Leap year
+        return 29;
+    } else {
+        // Not a leap year
+        return 28;
+    }
+  }
+
+  function dateToday(todayYear, todayMonth, todayDay) {
+
+    var feb = daysInFebruary(todayYear);
+    var aggregateMonths = [0, // January
+                           31, // February
+                           31 + feb, // March
+                           31 + feb + 31, // April
+                           31 + feb + 31 + 30, // May
+                           31 + feb + 31 + 30 + 31, // June
+                           31 + feb + 31 + 30 + 31 + 30, // July
+                           31 + feb + 31 + 30 + 31 + 30 + 31, // August
+                           31 + feb + 31 + 30 + 31 + 30 + 31 + 31, // September
+                           31 + feb + 31 + 30 + 31 + 30 + 31 + 31 + 30, // October
+                           31 + feb + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31, // November
+                           31 + feb + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30, // December
+                         ];
+    return aggregateMonths[todayMonth] + todayDay;
+  }
+   
+    todayFullDate = dateToday(todayYear, todayMonth, todayDay);
+    const num = '260';
+    var rando = Math.floor(Math.random()*99999) + 10000;
+    var html = "<h2>" + todayFullDate + num + rando + "</h2>";
+    document.getElementById("maincontent").innerHTML = html;
+      
+  </script>
+
+</body>
+
